@@ -11,6 +11,7 @@ namespace WebApiTest.Dtos
         public DateTime CreatedDate { get; init; }
         public User User { get; init; }
         public string Reaction { get; init; }
+        public Status status { get; init; }
 
     }
 }

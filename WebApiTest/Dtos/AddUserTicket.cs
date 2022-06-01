@@ -3,17 +3,12 @@ using WebApiTest.Entities;
 
 namespace WebApiTest.Dtos
 {
-    public record UpdateTicket
+    public class AddUserTicket
     {
         [Required]
-        [MaxLength(50)]
-        public string Title { get; init; }
+        public User User { get; init; }
 
         [Required]
-        [MaxLength(200)]
-        public string Message { get; init; }
-
         public Status status { get; init; }
-       
     }
 }

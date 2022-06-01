@@ -53,8 +53,8 @@ namespace WebApiTest.Controllers
                 Id = Guid.NewGuid(),
                 Title = ticketDto.Title,
                 Message = ticketDto.Message,
-                User = ticketDto.User,
-                Reaction = ticketDto.Reaction,
+                User = null,
+                Reaction = null,
                 CreatedDate = DateTime.Now
             };
             ticketRepository.CreateTicket(ticket);
@@ -75,12 +75,53 @@ namespace WebApiTest.Controllers
             {
                 Message = ticketDto.Message,
                 Title = ticketDto.Title,
-                User = ticketDto.User,
-                Reaction = ticketDto.Reaction,
+                status = ticketDto.status,
+                User = null,
+                Reaction = null,
             };
             ticketRepository.UpdateTicket(ticket);
 
             return NoContent();
+        }
+        //PUT /Tickets/AddReaction/{id}
+        [HttpPut("AddReaction/{id}")]
+        public ActionResult addReaction(Guid id, AddReactionTicket ticketDto)
+        {
+            var existing = ticketRepository.GetTicket(id);
+            if(existing == null)
+            {
+                return NotFound();
+            }
+
+            Ticket ticket = existing with { 
+                Reaction = ticketDto.Reaction,
+                status = ticketDto.status,
+            };
+
+            ticketRepository.UpdateTicket(ticket);
+            return NoContent();
+
+        }
+
+        //PUT /Tickets/AddUser/{id}
+        [HttpPut("AddUser/{id}")]
+        public ActionResult addUser(Guid id, AddUserTicket ticketDto)
+        {
+            var existing = ticketRepository.GetTicket(id);
+            if (existing == null)
+            {
+                return NotFound();
+            }
+
+            Ticket ticket = existing with
+            {
+                User = ticketDto.User,
+                status = ticketDto.status,
+            };
+
+            ticketRepository.UpdateTicket(ticket);
+            return NoContent();
+
         }
 
         //DELTE /Ticket/{id}

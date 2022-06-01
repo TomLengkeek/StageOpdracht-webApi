@@ -19,11 +19,6 @@ namespace WebApiTest.Repositories
             Tickets.Add(ticket);
         }
 
-        public void AddUser(User user, Ticket ticket)
-        {
-            Tickets[Tickets.IndexOf(ticket)].User = user;
-        }
-
         public void DeleteTicket(Guid id)
         {
            Tickets.Remove(GetTicket(id));

@@ -12,8 +12,6 @@ namespace WebApiTest.Dtos
         [Required]
         [MaxLength(200)]
         public string Message { get; init; }
-        public User User { get; init; }
-        [MaxLength(200)]
-        public string Reaction { get; init; }
+
     }
 }
